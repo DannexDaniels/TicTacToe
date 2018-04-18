@@ -20,6 +20,8 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
 
     private static final String TAG = "SELECT GRID";
 
+    String partner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +41,20 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()){
             case R.id.ib33:
                 setPlayers(v);
+                if (partner=="Computer"){
+                    setPlayer1Name(v);
+                    loadGame(1);
+                }else{
+                    setPlayer1Name(v);
+                    setPlayer2Name(v);
+                    loadGame(2);
+                }
                 break;
             case R.id.ib44:
-                Snackbar.make(v,"Its not set yet",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v,"Not Activated",Snackbar.LENGTH_SHORT).show();
                 break;
             case R.id.ib55:
-                Snackbar.make(v,"Its not set yet",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v,"Not activated",Snackbar.LENGTH_SHORT).show();
                 break;
             default:
                 Log.e(TAG, "onClick: its not accounted for");
@@ -67,8 +77,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                             SharedPreferences.Editor edit = preferences.edit();
                             edit.putString("partner","Computer");
-                            dialog.dismiss();
-                            setPlayer1Name(v);
+                            partner = "Computer";
                         }else {
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                             SharedPreferences.Editor edit = preferences.edit();
@@ -83,7 +92,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        loadGame();
+                        dialog.cancel();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -111,8 +120,6 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                         SharedPreferences.Editor edit = preferences.edit();
                         edit.putString("player2",input.getText().toString());
-                        setCharacter(view);
-
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -121,8 +128,6 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                         SharedPreferences.Editor edit = preferences.edit();
                         edit.putString("player2","Friend");
-                        Snackbar.make(view,"name set to Player 1",Snackbar.LENGTH_SHORT).show();
-                        setCharacter(view);
                     }
                 })
                 .show();
@@ -137,7 +142,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
             builder = new AlertDialog.Builder(SelectGrid.this);
         }
 
-        builder.setTitle("Enter Player Name")
+        builder.setTitle("Enter Name for player 1")
                 .setView(input)
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
@@ -147,7 +152,6 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                         edit.putString("player1",input.getText().toString());
                         edit.putString("player2","Computer");
                         setCharacter(view);
-
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -178,15 +182,13 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                         if (choice[which].toString().equals("Crosses 'X'")){
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                             SharedPreferences.Editor edit = preferences.edit();
-                            edit.putString("character","X");
-
-                            Snackbar.make(view,"Character X is Set",Snackbar.LENGTH_SHORT).show();
+                            edit.putString("character1","X");
+                            edit.putString("character2","O");
                         }else {
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                             SharedPreferences.Editor edit = preferences.edit();
-                            edit.putString("character","O");
-
-                            Snackbar.make(view,"Character O is Set",Snackbar.LENGTH_SHORT).show();
+                            edit.putString("character1","O");
+                            edit.putString("character2","X");
                         }
 
                     }
@@ -194,7 +196,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        loadGame();
+                        dialog.cancel();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -205,7 +207,10 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                 }).show();
     }
 
-    private void loadGame() {
-        startActivity(new Intent(getApplicationContext(),Grid33.class));
+    private void loadGame(int x) {
+        if (x==1)
+            startActivity(new Intent(getApplicationContext(),Grid33.class));
+        else
+            startActivity(new Intent(getApplicationContext(),Grid33_2Players.class));
     }
 }

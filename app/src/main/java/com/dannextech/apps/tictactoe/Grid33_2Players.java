@@ -15,7 +15,8 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class Grid33 extends AppCompatActivity implements View.OnClickListener{
+public class Grid33_2Players extends AppCompatActivity implements View.OnClickListener{
+
     public static final String TAG = "TicTacToe Logs";
 
     Button cellr1c1,cellr1c2,cellr1c3,cellr2c1,cellr2c2,cellr2c3,cellr3c1,cellr3c2,cellr3c3,btnreset, btnViewScore;
@@ -26,14 +27,14 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
     Boolean thereIsAWinner = false;
     String selectChar = null;
     String player1,player2;
-    int playCount = 0,player1wins=0,player2wins=0;
+    int player1wins=0,player2wins=0,playCount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grid33);
+        setContentView(R.layout.activity_grid33_2_players);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Grid33.this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Grid33_2Players.this);
         selectChar = preferences.getString("character","X");
         player1 = preferences.getString("player1","player1");
         player2 = preferences.getString("player2","Computer");
@@ -74,201 +75,15 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
         btnreset.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        Log.e(TAG, "onClick: is called");
-        switch (v.getId()){
-            case R.id.btnr1c1:
-                cellr1c1.setText(selectChar);
-                cellr1c1.setEnabled(false);
-                playCount++;
-                r1c1 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr1c2:
-                cellr1c2.setText(selectChar);
-                cellr1c2.setEnabled(false);
-                playCount++;
-                r1c2 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr1c3:
-                cellr1c3.setText(selectChar);
-                cellr1c3.setEnabled(false);
-                playCount++;
-                r1c3 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr2c1:
-                cellr2c1.setText(selectChar);
-                cellr2c1.setEnabled(false);
-                playCount++;
-                r2c1 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr2c2:
-                cellr2c2.setText(selectChar);
-                cellr2c2.setEnabled(false);
-                playCount++;
-                r2c2 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr2c3:
-                cellr2c3.setText(selectChar);
-                cellr2c3.setEnabled(false);
-                playCount++;
-                r2c3 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr3c1:
-                cellr3c1.setText(selectChar);
-                cellr3c1.setEnabled(false);
-                playCount++;
-                r3c1 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr3c2:
-                cellr3c2.setText(selectChar);
-                cellr3c2.setEnabled(false);
-                playCount++;
-                r3c2 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnr3c3:
-                cellr3c3.setText(selectChar);
-                cellr3c3.setEnabled(false);
-                playCount++;
-                r3c3 = true;
-                checkWinner();
-
-                if (player2=="Computer"){
-                    if (playCount<5 && !thereIsAWinner){
-                        if (selectChar =="X")
-                            computerPlay("O");
-                        else
-                            computerPlay("X");
-                        break;
-                    }else{
-                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
-                break;
-            case R.id.btnReset:
-                resetBoard(v);
-                break;
-            case R.id.btnViewScore:
-                showScore(v);
-                break;
-            default:
-                Snackbar.make(v,"function not set",Snackbar.LENGTH_SHORT).show();
-        }
-        Log.e(TAG, "onClick: playcount is "+playCount);
-    }
 
     private void showScore(final View view) {
         Log.e(TAG, "showScore: is called");
         final String[] choice = {"Crosses 'X'","Circles 'O'"};
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(Grid33.this, android.R.style.Theme_Material_Dialog);
+            builder = new AlertDialog.Builder(Grid33_2Players.this, android.R.style.Theme_Material_Dialog);
         } else {
-            builder = new AlertDialog.Builder(Grid33.this);
+            builder = new AlertDialog.Builder(Grid33_2Players.this);
         }
         builder.setTitle("Select Character")
                 .setMessage(player1+" has "+player1wins+" wins\n"+player2+"has"+player2wins+" wins")
@@ -334,18 +149,13 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
 
         Snackbar.make(v,"Grid Cleared",Snackbar.LENGTH_SHORT).show();
         btnViewScore.setEnabled(true);
-        playCount = 0;
     }
 
-    private void computerPlay(String type){
-        //generate a random number from 0 - 10
-        Random r = new Random();
-        int cell = r.nextInt(10-1)+1;
-
+    private void player1Play(int cell, String type){
         switch (cell){
             case 1:
                 if (cellr1c1.getText().toString().equals("O")||cellr1c1.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
                 }else{
                     cellr1c1.setText(""+type);
                     cellr1c1.setEnabled(false);
@@ -355,7 +165,7 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 2:
                 if (cellr1c2.getText().toString().equals("O")||cellr1c2.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //Do nothing
                 }else{
                     cellr1c2.setText(""+type);
                     cellr1c2.setEnabled(false);
@@ -365,7 +175,7 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 3:
                 if (cellr1c3.getText().toString().equals("O")||cellr1c3.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
                 }else{
                     cellr1c3.setText(""+type);
                     cellr1c3.setEnabled(false);
@@ -375,7 +185,7 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 4:
                 if (cellr2c1.getText().toString().equals("O")||cellr2c1.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
                 }else{
                     cellr2c1.setText(""+type);
                     cellr2c1.setEnabled(false);
@@ -385,7 +195,7 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 5:
                 if (cellr2c2.getText().toString().equals("O")||cellr2c2.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
                 }else{
                     cellr2c2.setText(""+type);
                     cellr2c2.setEnabled(false);
@@ -395,7 +205,7 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 6:
                 if (cellr2c3.getText().toString().equals("O")||cellr2c3.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
                 }else{
                     cellr2c3.setText(""+type);
                     cellr2c3.setEnabled(false);
@@ -405,7 +215,7 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 7:
                 if (cellr3c1.getText().toString().equals("O")||cellr3c1.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
                 }else{
                     cellr3c1.setText(""+type);
                     cellr3c1.setEnabled(false);
@@ -415,7 +225,7 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 8:
                 if (cellr3c2.getText().toString().equals("O")||cellr3c2.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
                 }else{
                     cellr3c2.setText(""+type);
                     cellr3c2.setEnabled(false);
@@ -425,7 +235,106 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 break;
             case 9:
                 if (cellr3c3.getText().toString().equals("O")||cellr3c3.getText().toString().equals("X")){
-                    computerPlay(type);
+                    //do nothing
+                }else{
+                    cellr3c3.setText(""+type);
+                    cellr3c3.setEnabled(false);
+                    p2r3c3 = true;
+                    checkWinner();
+                }
+                break;
+            default:
+                Log.e(TAG, "computerPlay: selected cell doesn't exist" );
+        }
+
+        Log.e(TAG, "computerPlay: Selected cell is "+cell);
+    }
+
+    private void player2Play(int cell, String type){
+        switch (cell){
+            case 1:
+                if (cellr1c1.getText().toString().equals("O")||cellr1c1.getText().toString().equals("X")){
+                    //do nothing
+                }else{
+                    cellr1c1.setText(""+type);
+                    cellr1c1.setEnabled(false);
+                    p2r1c1 = true;
+                    checkWinner();
+                }
+                break;
+            case 2:
+                if (cellr1c2.getText().toString().equals("O")||cellr1c2.getText().toString().equals("X")){
+                    //Do nothing
+                }else{
+                    cellr1c2.setText(""+type);
+                    cellr1c2.setEnabled(false);
+                    p2r1c2 = true;
+                    checkWinner();
+                }
+                break;
+            case 3:
+                if (cellr1c3.getText().toString().equals("O")||cellr1c3.getText().toString().equals("X")){
+                    //do nothing
+                }else{
+                    cellr1c3.setText(""+type);
+                    cellr1c3.setEnabled(false);
+                    p2r1c3 = true;
+                    checkWinner();
+                }
+                break;
+            case 4:
+                if (cellr2c1.getText().toString().equals("O")||cellr2c1.getText().toString().equals("X")){
+                    //do nothing
+                }else{
+                    cellr2c1.setText(""+type);
+                    cellr2c1.setEnabled(false);
+                    p2r2c1 = true;
+                    checkWinner();
+                }
+                break;
+            case 5:
+                if (cellr2c2.getText().toString().equals("O")||cellr2c2.getText().toString().equals("X")){
+                    //do nothing
+                }else{
+                    cellr2c2.setText(""+type);
+                    cellr2c2.setEnabled(false);
+                    p2r2c2 = true;
+                    checkWinner();
+                }
+                break;
+            case 6:
+                if (cellr2c3.getText().toString().equals("O")||cellr2c3.getText().toString().equals("X")){
+                    //do nothing
+                }else{
+                    cellr2c3.setText(""+type);
+                    cellr2c3.setEnabled(false);
+                    p2r2c3 = true;
+                    checkWinner();
+                }
+                break;
+            case 7:
+                if (cellr3c1.getText().toString().equals("O")||cellr3c1.getText().toString().equals("X")){
+                    //do nothing
+                }else{
+                    cellr3c1.setText(""+type);
+                    cellr3c1.setEnabled(false);
+                    p2r3c1 = true;
+                    checkWinner();
+                }
+                break;
+            case 8:
+                if (cellr3c2.getText().toString().equals("O")||cellr3c2.getText().toString().equals("X")){
+                    //do nothing
+                }else{
+                    cellr3c2.setText(""+type);
+                    cellr3c2.setEnabled(false);
+                    p2r3c2 = true;
+                    checkWinner();
+                }
+                break;
+            case 9:
+                if (cellr3c3.getText().toString().equals("O")||cellr3c3.getText().toString().equals("X")){
+                    //do nothing
                 }else{
                     cellr3c3.setText(""+type);
                     cellr3c3.setEnabled(false);
@@ -491,9 +400,9 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
         }
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(Grid33.this, android.R.style.Theme_Material_Dialog);
+            builder = new AlertDialog.Builder(Grid33_2Players.this, android.R.style.Theme_Material_Dialog);
         } else {
-            builder = new AlertDialog.Builder(Grid33.this);
+            builder = new AlertDialog.Builder(Grid33_2Players.this);
         }
 
         builder.setTitle("Winner")
@@ -507,5 +416,153 @@ public class Grid33 extends AppCompatActivity implements View.OnClickListener{
                 .show();
     }
 
-
+    @Override
+    public void onClick(View v) {
+        Log.e(TAG, "onClick: is called");
+        switch (v.getId()){
+            case R.id.btnr1c1:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(1,"X");
+                    }else{
+                        player1Play(1,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(1,"X");
+                    }else{
+                        player2Play(1,"O");
+                    }
+                }
+                break;
+            case R.id.btnr1c2:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(2,"X");
+                    }else{
+                        player1Play(2,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(2,"X");
+                    }else{
+                        player2Play(2,"O");
+                    }
+                }
+                break;
+            case R.id.btnr1c3:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(3,"X");
+                    }else{
+                        player1Play(3,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(3,"X");
+                    }else{
+                        player2Play(3,"O");
+                    }
+                }
+                break;
+            case R.id.btnr2c1:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(4,"X");
+                    }else{
+                        player1Play(4,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(4,"X");
+                    }else{
+                        player2Play(4,"O");
+                    }
+                }
+                break;
+            case R.id.btnr2c2:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(5,"X");
+                    }else{
+                        player1Play(5,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(5,"X");
+                    }else{
+                        player2Play(5,"O");
+                    }
+                }
+                break;
+            case R.id.btnr2c3:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(6,"X");
+                    }else{
+                        player1Play(6,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(6,"X");
+                    }else{
+                        player2Play(6,"O");
+                    }
+                }
+                break;
+            case R.id.btnr3c1:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(7,"X");
+                    }else{
+                        player1Play(7,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(7,"X");
+                    }else{
+                        player2Play(7,"O");
+                    }
+                }
+                break;
+            case R.id.btnr3c2:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(8,"X");
+                    }else{
+                        player1Play(8,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(8,"X");
+                    }else{
+                        player2Play(8,"O");
+                    }
+                }
+                break;
+            case R.id.btnr3c3:
+                if (playCount%2==0){
+                    if (selectChar.equals("X")){
+                        player1Play(9,"X");
+                    }else{
+                        player1Play(9,"O");
+                    }
+                }else{
+                    if (selectChar.equals("X")){
+                        player2Play(9,"X");
+                    }else{
+                        player2Play(9,"O");
+                    }
+                }
+                break;
+            case R.id.btnReset:
+                resetBoard(v);
+                break;
+            case R.id.btnViewScore_2:
+                showScore(v);
+                break;
+            default:
+                Snackbar.make(v,"function not set",Snackbar.LENGTH_SHORT).show();
+        }
+    }
 }

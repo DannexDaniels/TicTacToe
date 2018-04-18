@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dannextech.apps.tictactoe.Grid33">
+    tools:context=".Grid33_2Players">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:id="@+id/tvPlayer"
+            android:id="@+id/tvPlayer_2"
             android:text="player"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
@@ -42,7 +42,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnr1c1"
+                        android:id="@+id/btnr1c1_2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -52,10 +52,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr1c2"/>
+                        android:id="@+id/btnr1c2_2"/>
 
                     <Button
-                        android:id="@+id/btnr1c3"
+                        android:id="@+id/btnr1c3_2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -72,10 +72,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr2c1"/>
+                        android:id="@+id/btnr2c1_2"/>
 
                     <Button
-                        android:id="@+id/btnr2c2"
+                        android:id="@+id/btnr2c2_2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -85,7 +85,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr2c3"/>
+                        android:id="@+id/btnr2c3_2"/>
                 </LinearLayout>
                 <!--third row -->
                 <LinearLayout
@@ -95,7 +95,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnr3c1"
+                        android:id="@+id/btnr3c1_2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -105,10 +105,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr3c2"/>
+                        android:id="@+id/btnr3c2_2"/>
 
                     <Button
-                        android:id="@+id/btnr3c3"
+                        android:id="@+id/btnr3c3_2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -130,15 +130,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:id="@+id/btnReset"
+                android:id="@+id/btnReset_2"
                 android:text="Reset Board"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:id="@+id/btnViewScore"
+                android:id="@+id/btnViewScore_2"
                 android:text="View Scores"/>
         </LinearLayout>
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
