@@ -75,9 +75,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                             SharedPreferences.Editor edit = preferences.edit();
                             edit.putString("partner","Friend");
-                            dialog.dismiss();
-                            setPlayer1Name(v);
-                            setPlayer2Name(v);
+                            partner = "Friend";
                         }
 
                     }
@@ -85,12 +83,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (partner=="Computer"){
-                            setPlayer1Name(v);
-                        }else{
-                            setPlayer1Name(v);
-
-                        }
+                        setPlayer1Name(v);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
