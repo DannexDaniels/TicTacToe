@@ -41,14 +41,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()){
             case R.id.ib33:
                 setPlayers(v);
-                if (partner=="Computer"){
-                    setPlayer1Name(v);
-                    loadGame(1);
-                }else{
-                    setPlayer1Name(v);
-                    setPlayer2Name(v);
-                    loadGame(2);
-                }
+
                 break;
             case R.id.ib44:
                 Snackbar.make(v,"Not Activated",Snackbar.LENGTH_SHORT).show();
@@ -92,7 +85,12 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        if (partner=="Computer"){
+                            setPlayer1Name(v);
+                        }else{
+                            setPlayer1Name(v);
+
+                        }
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -120,6 +118,7 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SelectGrid.this);
                         SharedPreferences.Editor edit = preferences.edit();
                         edit.putString("player2",input.getText().toString());
+                        loadGame(2);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -196,7 +195,11 @@ public class SelectGrid extends AppCompatActivity implements View.OnClickListene
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        if (partner=="Computer")
+                            loadGame(1);
+                        else
+                            setPlayer2Name(view);
+
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
