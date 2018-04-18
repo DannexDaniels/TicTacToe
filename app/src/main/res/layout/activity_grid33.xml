@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dannextech.apps.tictactoe.MainActivity">
+    tools:context="com.dannextech.apps.tictactoe.Grid33">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,21 +40,27 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
+
                     <Button
+                        android:id="@+id/btnr1c1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr1c1"/>
+                        android:textColor="#fff"
+                        android:background="#000" />
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:id="@+id/btnr1c2"/>
+
                     <Button
+                        android:id="@+id/btnr1c3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr1c3"/>
+                        android:textColor="#fff"
+                        android:background="#000" />
                 </LinearLayout>
                 <!--second row -->
                 <LinearLayout
@@ -67,11 +73,14 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:id="@+id/btnr2c1"/>
+
                     <Button
+                        android:id="@+id/btnr2c2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr2c2"/>
+                        android:textColor="#fff"
+                        android:background="#000" />
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -84,21 +93,27 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
+
                     <Button
+                        android:id="@+id/btnr3c1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr3c1"/>
+                        android:textColor="#fff"
+                        android:background="#000" />
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:id="@+id/btnr3c2"/>
+
                     <Button
+                        android:id="@+id/btnr3c3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:id="@+id/btnr3c3"/>
+                        android:textColor="#fff"
+                        android:background="#000" />
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -110,19 +125,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/btnSelectChar"
-                android:text="Select Character"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/btnReset"
                 android:text="Reset Board"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/btnSelectChar"
+                android:text="View Scores"/>
         </LinearLayout>
     </LinearLayout>
 

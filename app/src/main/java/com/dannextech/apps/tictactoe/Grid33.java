@@ -1,7 +1,9 @@
 package com.dannextech.apps.tictactoe;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class Grid33 extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = "TicTacToe Logs";
 
     Button cellr1c1,cellr1c2,cellr1c3,cellr2c1,cellr2c2,cellr2c3,cellr3c1,cellr3c2,cellr3c3,btnreset,btnselectchar;
@@ -24,23 +25,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Boolean p2r1c1 = false,p2r1c2 = false,p2r1c3 = false,p2r2c1 = false,p2r2c2 = false,p2r2c3 = false,p2r3c1 = false,p2r3c2 = false,p2r3c3 = false;
     Boolean thereIsAWinner = false;
     String selectChar = null;
+    String player1,player2;
     int playCount = 0;
     int checked[] = new int [9];
-
-    public String getSelectChar() {
-        return selectChar;
-    }
-
-    public void setSelectChar(String selectChar) {
-
-        this.selectChar = selectChar;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_grid33);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Grid33.this);
+        selectChar = preferences.getString("character","X");
+        player1 = preferences.getString("player1","player1");
+        player2 = preferences.getString("player2","Computer");
 
         cellr1c1 = findViewById(R.id.btnr1c1);
         cellr1c2 = findViewById(R.id.btnr1c2);
@@ -61,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.e(TAG, "onCreate: is called");
         View parentLayout = findViewById(android.R.id.content);
+
+        tvPlayer.setText(player1);
 
         cellr1c1.setOnClickListener(this);
         cellr1c2.setOnClickListener(this);
@@ -83,162 +82,203 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e(TAG, "onClick: is called");
         switch (v.getId()){
             case R.id.btnr1c1:
-                cellr1c1.setText(getSelectChar());
-                cellr1c1.setEnabled(false);
-                playCount++;
-                r1c1 = true;
-                checkWinner();
+                if (playCount%2==0){
+                    cellr1c1.setText(selectChar);
+                    cellr1c1.setEnabled(false);
+                    playCount++;
+                    r1c1 = true;
+                    checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
-                }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    if (player2=="Computer"){
+                        if (playCount<5 && !thereIsAWinner){
+                            if (selectChar =="X")
+                                computerPlay("O");
+                            else
+                                computerPlay("X");
+                            break;
+                        }else{
+                            Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
+                    }
+                }else {
+
                 }
                 break;
             case R.id.btnr1c2:
-                cellr1c2.setText(getSelectChar());
+                cellr1c2.setText(selectChar);
                 cellr1c2.setEnabled(false);
                 playCount++;
                 r1c2 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btnr1c3:
-                cellr1c3.setText(getSelectChar());
+                cellr1c3.setText(selectChar);
                 cellr1c3.setEnabled(false);
                 playCount++;
                 r1c3 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
+                break;
             case R.id.btnr2c1:
-                cellr2c1.setText(getSelectChar());
+                cellr2c1.setText(selectChar);
                 cellr2c1.setEnabled(false);
                 playCount++;
                 r2c1 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btnr2c2:
-                cellr2c2.setText(getSelectChar());
+                cellr2c2.setText(selectChar);
                 cellr2c2.setEnabled(false);
                 playCount++;
                 r2c2 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btnr2c3:
-                cellr2c3.setText(getSelectChar());
+                cellr2c3.setText(selectChar);
                 cellr2c3.setEnabled(false);
                 playCount++;
                 r2c3 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btnr3c1:
-                cellr3c1.setText(getSelectChar());
+                cellr3c1.setText(selectChar);
                 cellr3c1.setEnabled(false);
                 playCount++;
                 r3c1 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btnr3c2:
-                cellr3c2.setText(getSelectChar());
+                cellr3c2.setText(selectChar);
                 cellr3c2.setEnabled(false);
                 playCount++;
                 r3c2 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btnr3c3:
-                cellr3c3.setText(getSelectChar());
+                cellr3c3.setText(selectChar);
                 cellr3c3.setEnabled(false);
                 playCount++;
                 r3c3 = true;
                 checkWinner();
 
-                if (playCount<5 && !thereIsAWinner){
-                    if (getSelectChar()=="X")
-                        playerTwo("O");
-                    else
-                        playerTwo("X");
-                    break;
+                if (player2=="Computer"){
+                    if (playCount<5 && !thereIsAWinner){
+                        if (selectChar =="X")
+                            computerPlay("O");
+                        else
+                            computerPlay("X");
+                        break;
+                    }else{
+                        Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Snackbar.make(v,"Grid is full",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v,player2+" it's your turn",Snackbar.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btnReset:
                 resetBoard(v);
                 break;
             case R.id.btnSelectChar:
-                setCharacter(v);
+                showScore(v);
                 break;
             default:
                 Snackbar.make(v,"function not set",Snackbar.LENGTH_SHORT).show();
@@ -246,48 +286,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e(TAG, "onClick: playcount is "+playCount);
     }
 
-    private void setCharacter(final View view) {
-        Log.e(TAG, "setCharacter: is called");
+    private void showScore(final View view) {
+        Log.e(TAG, "showScore: is called");
         final String[] choice = {"Crosses 'X'","Circles 'O'"};
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(MainActivity.this, android.R.style.Theme_Material_Dialog);
+            builder = new AlertDialog.Builder(Grid33.this, android.R.style.Theme_Material_Dialog);
         } else {
-            builder = new AlertDialog.Builder(MainActivity.this);
+            builder = new AlertDialog.Builder(Grid33.this);
         }
         builder.setTitle("Select Character")
-                .setSingleChoiceItems(choice, 1, new DialogInterface.OnClickListener() {
+                .setMessage("Player 1 has 3 wins\nPlayer 2 has 1 wins")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (choice[which].toString().equals("Crosses 'X'")){
-                            setSelectChar("X");
-                            Snackbar.make(view,"Character X is Set",Snackbar.LENGTH_SHORT).show();
-                        }else {
-                            setSelectChar("O");
-                            Snackbar.make(view,"Character O is Set",Snackbar.LENGTH_SHORT).show();
-                        }
-
+                        dialog.dismiss();
                     }
                 })
-                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (getSelectChar()==null){
-                            setSelectChar("0");
-                        }
-                        btnselectchar.setEnabled(false);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).show();
+                .show();
     }
 
     private void resetBoard(View v) {
-        Log.e(TAG, "resetBoard: is called");
+        thereIsAWinner = false;
         cellr1c1.setText("");
         cellr1c2.setText("");
         cellr1c3.setText("");
@@ -342,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playCount = 0;
     }
 
-    private void playerTwo(String type){
+    private void computerPlay(String type){
         //generate a random number from 0 - 10
         Random r = new Random();
         int cell = r.nextInt(10-1)+1;
@@ -350,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (cell){
             case 1:
                 if (cellr1c1.getText().toString().equals("O")||cellr1c1.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr1c1.setText(""+type);
                     cellr1c1.setEnabled(false);
@@ -360,7 +380,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 2:
                 if (cellr1c2.getText().toString().equals("O")||cellr1c2.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr1c2.setText(""+type);
                     cellr1c2.setEnabled(false);
@@ -370,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 3:
                 if (cellr1c3.getText().toString().equals("O")||cellr1c3.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr1c3.setText(""+type);
                     cellr1c3.setEnabled(false);
@@ -380,7 +400,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 4:
                 if (cellr2c1.getText().toString().equals("O")||cellr2c1.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr2c1.setText(""+type);
                     cellr2c1.setEnabled(false);
@@ -390,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 5:
                 if (cellr2c2.getText().toString().equals("O")||cellr2c2.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr2c2.setText(""+type);
                     cellr2c2.setEnabled(false);
@@ -400,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 6:
                 if (cellr2c3.getText().toString().equals("O")||cellr2c3.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr2c3.setText(""+type);
                     cellr2c3.setEnabled(false);
@@ -410,7 +430,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 7:
                 if (cellr3c1.getText().toString().equals("O")||cellr3c1.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr3c1.setText(""+type);
                     cellr3c1.setEnabled(false);
@@ -420,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 8:
                 if (cellr3c2.getText().toString().equals("O")||cellr3c2.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr3c2.setText(""+type);
                     cellr3c2.setEnabled(false);
@@ -430,7 +450,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 9:
                 if (cellr3c3.getText().toString().equals("O")||cellr3c3.getText().toString().equals("X")){
-                    playerTwo(type);
+                    computerPlay(type);
                 }else{
                     cellr3c3.setText(""+type);
                     cellr3c3.setEnabled(false);
@@ -439,10 +459,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             default:
-                Log.e(TAG, "playerTwo: selected cell doesn't exist" );
+                Log.e(TAG, "computerPlay: selected cell doesn't exist" );
         }
 
-        Log.e(TAG, "playerTwo: Selected cell is "+cell);
+        Log.e(TAG, "computerPlay: Selected cell is "+cell);
     }
 
     private void checkWinner(){
@@ -483,27 +503,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private Boolean isCharacterSet(View view){
-        Log.e(TAG, "isCharacterSet: is called");
-        if (selectChar == null){
-            Snackbar.make(view,"Character is not set",Snackbar.LENGTH_SHORT).show();
-            return false;
-        }else {
-            return true;
-        }
-    }
-
     private void showWinner(int player){
         thereIsAWinner = true;
+        String winner;
+
+        if (player==1){
+            winner = player1;
+        }else {
+            winner = player2;
+        }
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(MainActivity.this, android.R.style.Theme_Material_Dialog);
+            builder = new AlertDialog.Builder(Grid33.this, android.R.style.Theme_Material_Dialog);
         } else {
-            builder = new AlertDialog.Builder(MainActivity.this);
+            builder = new AlertDialog.Builder(Grid33.this);
         }
 
         builder.setTitle("Winner")
-                .setMessage("Congratulations Player "+player+", You have won")
+                .setMessage("Congratulations "+winner+", You have won")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
